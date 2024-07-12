@@ -1,101 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMT Website</title>
-    <style>
-        /* CSS 样式可以直接写在这里，也可以放到外部样式表中 */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #f4f4f4;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            padding: 5px 10px;
-        }
-        nav ul li a:hover {
-            background-color: #ddd;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .main {
-            float: left;
-            width: 70%;
-            padding: 20px;
-        }
-        .sidebar {
-            float: left;
-            width: 30%;
-            background: #f4f4f4;
-            padding: 20px;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <title>科研团队介绍</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
     <header>
-        <h1>Welcome to DMT Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="loadContent('home')">主页</a></li>
+                <li><a href="#" onclick="loadContent('projects')">科研项目</a></li>
+                <li><a href="#" onclick="loadContent('awards')">获奖荣誉</a></li>
+                <li><a href="#" onclick="loadContent('patents')">知识产权</a></li>
+                <li><a href="#" onclick="loadContent('contact')">联系我们</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <main id="content">
+        <!-- 动态内容将在这里加载 -->
+    </main>
 
-    <div class="container">
-        <section class="main">
-            <h2>主页</h2>
-            <p>Welcome to DMT Website! This is the home page content.</p>
-        </section>
-		<section class="introduction">
-            <h2>团队简介</h2>
-            <p><a href="数字媒体技术团队_2024_0711.pdf">数字媒体技术团队</a></p>
-        </section>
-    </div>
-
-		
     <footer>
-        <p>&copy; 2024 DMT Website. All rights reserved.</p>
+        <p>版权 © 2024 科研团队. 保留所有权利。</p>
     </footer>
 
+    <script src="js/script.js"></script>
 </body>
 </html>
