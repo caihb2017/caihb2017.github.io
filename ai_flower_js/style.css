@@ -1,0 +1,58 @@
+/* 样式可以根据需求进行修改 */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center; /* 让文本内容居中 */
+    margin: 0; /* 去掉默认的 margin */
+}
+
+h1 {
+    margin-bottom: 20px; /* 标题下方的间距 */
+    text-align: center; /* 让文本内容居中 */
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中（可选） */
+}
+
+table {
+    width: 80%; /* 表格宽度为页面宽度的80% */
+    margin: 20px auto; /* 上下间距为20px，左右自动居中 */
+    border-collapse: collapse;
+    border: 0; /* 隐藏表格的边框 */
+}
+
+th, td {
+    border: 0;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.item {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.recognition-column {
+    width: 10%;
+    text-align: center; 
+}
+
+.image-column {
+    width: 40%;
+    text-align: center; 
+}
+#image {
+    display: block; /* 确保图片块级显示 */
+    margin: 0 auto; /* 自动左右边距，居中显示 */
+}

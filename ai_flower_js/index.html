@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TensorFlow.js Image Recognition Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>TensorFlow.js Flower Recognition Demo</h1>
+  </div>
+
+  <div class="container">
+    <table>
+      <tbody>
+          <tr>
+            <td class="image-column">
+              <input type="file" id="imageUpload" accept="image/*">
+              <br><br>
+              <img id="image" width="300" style="display: none;">
+              <br><br>
+            </td>
+          </tr>
+          <tr>
+            <td class="recognition-column">
+              <button id="predict">Predict Image</button>
+              <p id="result"></p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="ai_flower.js"></script>
+</body>
+</html>
