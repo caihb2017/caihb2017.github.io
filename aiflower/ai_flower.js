@@ -1,6 +1,9 @@
 // app.js
 
+// 全局变量
 let model;
+let labelMap = {};
+let labelJson = 'conf/label_map-encn.json'
 
 // 加载预训练模型
 async function loadModel() {
@@ -43,6 +46,10 @@ async function loadModel() {
 
 // 处理上传的图片
 function handleImageUpload(event) {
+  // 清空上次识别结果
+  document.getElementById('result').innerText = "";
+
+  // 加载图片
   const file = event.target.files[0];
   const reader = new FileReader();
   
@@ -56,15 +63,16 @@ function handleImageUpload(event) {
 }
 
 // 加载类别标签
-function loadLabelMap(label_path){
-  let labelMap = {};
+async function loadLabelMap(label_path){
   try {
-    const response = fetch(label_path);
-    labelMap = response.json();
+    const response = await fetch(label_path);
+    labelMap = await response.json();
+    // console.log("类别标签加载成功:", labelMap);
+    // return labelMap;
   } catch (error) {
     console.error("加载类别标签失败:", error);
     document.getElementById('result').innerText = "加载类别标签失败。";
-    return;
+    // return null;
   }
 }
 
@@ -127,18 +135,7 @@ async function predictImage() {
     document.getElementById('result').innerText = "模型尚未加载。";
     return;
   }
-
-  // 加载类别标签
-  let labelMap = {};
-  try {
-    const response = await fetch('label_map-en.json');
-    labelMap = await response.json();
-  } catch (error) {
-    console.error("加载类别标签失败:", error);
-    document.getElementById('result').innerText = "加载类别标签失败。";
-    return;
-  }
-
+  console.log("类别标签加载成功:", labelMap);
   // 获取图像元素
   const imgElement = document.getElementById('image');
   // 从图像元素创建张量
@@ -225,7 +222,7 @@ function initialize() {
 
   loadModel(); // 加载模型
   
-  loadLabelMap('label_map-cn.json');
+  loadLabelMap(labelJson);
 }
 
 // 当页面加载完成时，调用初始化函数
