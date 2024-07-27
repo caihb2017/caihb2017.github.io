@@ -1,0 +1,119 @@
+/* 样式可以根据需求进行修改 */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+header {
+    background-color: #0044cc;
+    color: white;
+    padding: 10px 0;
+}
+
+h1 {
+    font-size: 2em;         /* 设置字体大小 */
+    font-weight: bold;        /* 设置字体粗细 */
+    color: #333;              /* 设置字体颜色 */
+    text-align: center;       /* 设置文本对齐方式 */
+    margin-top: 20px;         /* 设置顶部外边距 */
+    margin-bottom: 20px;      /* 设置底部外边距 */
+    line-height: 1.2;         /* 设置行高 */
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 1.6em;
+    font-weight: normal;      /* 设置字体粗细为正常 */
+    color: #666;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+h4 {
+    font-size: 1.4em;
+    font-weight: normal;
+    color: #777;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: hsl(195, 74%, 77%);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+table {
+    width: 80%; /* 表格宽度为页面宽度的70% */
+    margin: 20px auto; /* 上下间距为20px，左右自动居中 */
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+.item {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.name-column {
+    width: 80%;
+}
+.date-column {
+    width: 20%;
+    text-align: center; /* 让日期列中的文本居中 */
+}
+
+.cn {
+    text-indent: 2em; /* 设置中文段落首行缩进2个字符 */
+}

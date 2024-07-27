@@ -1,0 +1,34 @@
+/* 样式可以根据需求进行修改 */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center; /* 让文本内容居中 */
+}
+table {
+    width: 80%; /* 表格宽度为页面宽度的70% */
+    margin: 20px auto; /* 上下间距为20px，左右自动居中 */
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.item {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.name-column {
+    width: 80%;
+}
+.date-column {
+    width: 20%;
+    text-align: center; /* 让日期列中的文本居中 */
+}
