@@ -1,39 +1,25 @@
-// app.js
+// ai_flower.js
 
 // 全局变量
 let model;
 let labelMap = {};
-let labelJson = 'conf/label_map-encn.json'
+// 开发
+// let labelUrl = 'https://caihb2017.github.io/web_model/savedmodel/label_map.json'
+// let modelUrl = 'https://caihb2017.github.io/web_model/savedmodel/model.json'
+// 部署
+let labelUrl = 'web_model/savedmodel/label_map.json'
+let modelUrl = 'web_model/savedmodel/model.json'
 
 // 加载预训练模型
 async function loadModel() {
   try {
-    // 加载h5转换模型有错
-    // model = await tf.loadLayersModel('https://caihb2017.github.io/web_model/h5/model.json');
-
     // 加载Savedmodel转换模型运行正确，预测错误
-    model = await tf.loadGraphModel('https://caihb2017.github.io/web_model/savedmodel/model.json');
+    model = await tf.loadGraphModel(modelUrl);
+    // model = await tf.loadGraphModel('web_model/savedmodel/model.json');
     
     document.getElementById('predict').disabled = false; // 启用预测按钮
     document.getElementById('result').innerText = "Model loaded successfully.";
     
-    // for SavedModel debug 
-    // 查看模型的输入输出节点
-    // console.log("Model inputs:");
-    // model.inputs.forEach(input => {
-    //   console.log(`- ${input.name} (${input.shape})`);
-    // });
-
-    // console.log("Model outputs:");
-    // model.outputs.forEach(output => {
-    //   console.log(`- ${output.name} (${output.shape})`);
-    // });
-
-    // for h5 debug
-    // model.inputs.forEach(input => {
-    //   console.log('Input shape:', input.shape);
-    // });
-
     // console.log("Model input:", model.input)
     // console.log(model.summary())
 
@@ -74,59 +60,6 @@ async function loadLabelMap(label_path){
     document.getElementById('result').innerText = "加载类别标签失败。";
     // return null;
   }
-}
-
-// H5模型预测图片
-async function predictImage_h5() {
-  if (!model) {
-    document.getElementById('result').innerText = "模型尚未加载。";
-    return;
-  }
-
-  const imgElement = document.getElementById('image');
-  const tensorImg = tf.browser.fromPixels(imgElement).toFloat();
-  // 调整为模型需要的输入大小
-  const resizedImg = tf.image.resizeBilinear(tensorImg, [224, 224]); 
-  
-  const normalizedImg = resizedImg.div(255.0);
-
-  // 转为灰度图像并保持通道维度
-  // const grayscaleImg = resizedImg.mean(-1, true); // 转为灰度图像并保持通道维度
-  // const normalizedImg = grayscaleImg.div(255.0);
-
-  // 展平并扩展维度
-  // (224, 224, 3) 展平为 (224 * 224 * 3)
-  // const flattenedImg = normalizedImg.flatten(); // 展平为一维数据
-  // const batchedImg = flattenedImg.expandDims(0); // 扩展为 [1, 150528] 的批量数据
-
-  // 添加批量维度
-  const batchedImg = normalizedImg.expandDims(0);
-
-  // 进行预测
-  const predictions = await model.predict(batchedImg).array();
-
-  // 处理预测结果
-  const probabilities = tf.softmax(predictions[0]); // 应用 softmax
-  const arr = await probabilities.array();
-
-  // 获取 top-k 预测
-  const topK = 5; // 获取前 5 个预测
-  const topKIndices = Array.from(arr)
-                            .map((prob, index) => ({prob, index}))
-                            .sort((a, b) => b.prob - a.prob)
-                            .slice(0, topK)
-                            .map(item => item.index);
-                            
-  const topKProbabilities = topKIndices.map(index => arr[index]);
-
-  // 显示 top-k 预测结果
-  let resultText = "";
-  topKIndices.forEach((index, i) => {
-    const className = labelMap[index] || "Unknown"; // 从字典中获取类别名称
-    const probability = topKProbabilities[i];
-    resultText += `${className}: ${probability.toFixed(4)}\n`; // 保留四位小数
-  });
-  document.getElementById('result').innerText = resultText;
 }
 
 // SavedModel模型预测图片
@@ -202,10 +135,10 @@ async function predictImage() {
   console.log(topKIndices)
   console.log(topKProbabilities)
 
-  // 显示 top-k 预测结果
+  // 显示 top-k 预测结果, label编号从1开始（index+1），不是从0开始
   let resultText = "";
   topKIndices.forEach((index, i) => {
-    const className = labelMap[index] || "Unknown"; // 从字典中获取类别名称
+    const className = labelMap[index + 1] || "Unknown"; // 从字典中获取类别名称
     const probability = topKProbabilities[i];
     resultText += `${className}: ${probability.toFixed(4)}\n`; // 保留四位小数
   });
@@ -222,7 +155,7 @@ function initialize() {
 
   loadModel(); // 加载模型
   
-  loadLabelMap(labelJson);
+  loadLabelMap(labelUrl);
 }
 
 // 当页面加载完成时，调用初始化函数
