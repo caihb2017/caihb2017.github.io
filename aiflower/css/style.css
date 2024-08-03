@@ -52,7 +52,28 @@ th {
     width: 40%;
     text-align: center; 
 }
+
+.promptText {
+    position: relative; 
+    top: 10px; /* 根据需要调整 */
+    left: 10px; /* 根据需要调整 */
+    color: red; /* 红色字体 */
+    font-weight: bold; /* 粗体 */
+    font-size: 20px; /* 大1号字体 */
+    z-index: 10; /* 确保在其他内容上方 */
+    pointer-events: none; /* 确保不会阻挡鼠标事件 */
+}
+
+/* Ensure the canvas covers the image and is on top */
+#imageContainer {
+    position: relative;
+    display: inline-block;
+}
 #image {
-    display: block; /* 确保图片块级显示 */
-    margin: 0 auto; /* 自动左右边距，居中显示 */
+    display: block;
+}
+#overlayCanvas {
+    position: absolute;
+    border: 2px dashed green;
+    display: none;
 }

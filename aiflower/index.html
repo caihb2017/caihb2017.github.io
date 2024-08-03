@@ -5,29 +5,44 @@
   <!-- Import TensorFlow.js library -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
   <link rel="stylesheet" href="css/style.css">
+  
 </head>
 <body>
   <div class="container">
-    <h1>TensorFlow.js Flower Recognition Demo</h1>
+    <h1>Flower Recognition Demo</h1>
   </div>
 
   <div class="container">
     <table>
       <tbody>
-          <tr>
-            <td class="image-column">
-              <input type="file" id="imageUpload" accept="image/*">
-              <br><br>
-              <img id="image" width="300" style="display: none;">
-              <br><br>
-            </td>
-          </tr>
-          <tr>
-            <td class="recognition-column">
-              <button id="predict">Predict Image</button>
-              <p id="result"></p>
-            </td>
-          </tr>
+        <tr>
+          <td>
+            <button id="predict">Predict Image</button>
+          </td>
+          <td>
+            <p id="result"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="file" id="imageUpload" accept="image/*">
+          </td>
+          <td>
+            <p class="promptText" id="promptText"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="imageContainer">
+              <!--img id="image" width="300" style="display: none;" onclick="getClickPosition(event)"-->
+                <img id="image" width="300" style="display: none;" alt="Image">
+                <div id="overlayCanvas"></div>
+            </div>
+          </td>
+          <td>
+            <img id="croppedImage" style="display: none;">
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
