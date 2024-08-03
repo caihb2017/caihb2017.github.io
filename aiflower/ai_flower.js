@@ -256,6 +256,9 @@ async function predictImage() {
  
   const topKProbabilities = topKIndices.map(index => probabilities[index]);
 
+  console.log(topKIndices)
+  console.log(topKProbabilities)
+
   // 显示 top-k 预测结果, label编号从1开始（index+1），不是从0开始
   let resultText = "";
   // topKIndices.forEach((index, i) => {
@@ -292,7 +295,6 @@ async function predictImage() {
 // 鼠标按下事件处理
 // 双击事件触发，获取鼠标位置，作为矩形框中心
 document.addEventListener('dblclick', (event) => {
-  console.log("双击事件触发"); // 检查事件是否被触发
   const imgElement = document.getElementById('image');
   
   if (imgElement) {
@@ -300,11 +302,17 @@ document.addEventListener('dblclick', (event) => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     
-    const sx = x - inputWidth / 2;
-    const sy = y - inputHeight / 2;
-    const ex = sx + inputWidth;
-    const ey = sy + inputHeight;
+    let sx = x - inputWidth / 2;
+    let sy = y - inputHeight / 2;
+    let ex = sx + inputWidth;
+    let ey = sy + inputHeight;
     
+    // 判断越界
+    if(sx < 0) sx = 0;
+    if(sy < 0) sy = 0;
+    if(ex > rect.right) ex = rect.right;
+    if(ey > rect.bottom) ey = rect.bottom;
+
     // 显示裁剪图片
     cropImage(sx, sy, ex, ey);
 
@@ -362,6 +370,14 @@ document.addEventListener('pointerup', (event) => {
     // 计算裁剪区域的宽度和高度
     const width = endX - startX;
     const height = endY - startY;
+
+    // 如果在图片上click，或width、heigit太小，判断为误操作
+    if(width < 10 || height < 10) {
+      // 清除虚线框
+      overlay.style.display = 'none';
+
+      return;
+    }
 
     // 调用裁剪函数
     cropImage(startX, startY, endX, endY);
