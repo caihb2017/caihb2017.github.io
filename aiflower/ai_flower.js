@@ -72,6 +72,8 @@ function handleImageUpload(event) {
   const croppedImgElement = document.getElementById('croppedImage');
   croppedImgElement.src = '';
   croppedImgElement.style.display = 'none';
+  // 清除虚线框
+  overlay.style.display = 'none';
 
   // 禁用预测按钮
   document.getElementById('predict').disabled = true; 
@@ -256,8 +258,8 @@ async function predictImage() {
  
   const topKProbabilities = topKIndices.map(index => probabilities[index]);
 
-  console.log(topKIndices)
-  console.log(topKProbabilities)
+  // console.log(topKIndices)
+  // console.log(topKProbabilities)
 
   // 显示 top-k 预测结果, label编号从1开始（index+1），不是从0开始
   let resultText = "";
@@ -272,7 +274,7 @@ async function predictImage() {
   top1Prob = topKProbabilities[0];
   const className = labelMap[topKIndices[0] + 1] || "Unknown"; // 从字典中获取类别名称
   const cnName = leabelEnCn[className];
-  resultText += `${className}-${cnName}: ${top1Prob.toFixed(4)}\n`; // 保留四位小数
+  resultText += `${className}(${cnName}): ${top1Prob.toFixed(4)}\n`; // 保留四位小数
 
   // top-1小于80%，再补充输出2个预测
   if (top1Prob < 0.8) {
@@ -282,7 +284,7 @@ async function predictImage() {
       if (probability >= 0.6) {
         const className = labelMap[topKIndices[0] + 1] || "Unknown"; // 从字典中获取类别名称
         const cnName = leabelEnCn[className];
-        resultText += `maybe: ${className}-${cnName}: ${probability.toFixed(4)}\n`; // 保留四位小数    
+        resultText += `maybe: ${className}(${cnName}): ${probability.toFixed(4)}\n`; // 保留四位小数    
       }
     }
   }
