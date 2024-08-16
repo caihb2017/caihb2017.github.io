@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>科研团队介绍</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#" onclick="loadContent('home')">主页</a></li>
-                <li><a href="#" onclick="loadContent('projects')">科研项目</a></li>
-                <li><a href="#" onclick="loadContent('awards')">获奖荣誉</a></li>
-                <li><a href="#" onclick="loadContent('patents')">知识产权</a></li>
-                <li><a href="#" onclick="loadContent('contact')">联系我们</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main id="content">
-        <!-- 动态内容将在这里加载 -->
+<body class="d-flex flex-column min-vh-100">
+    <main class="flex-fill">
+        <div class="container py-3">
+            <div class="row align-items-center">
+                <div class="col-4 mb-3">
+                    <img src="/images/image-home.jpg" class="img-fluid">
+                </div>
+                <div class="col-8 mb-3">
+                    <h1 class="mb-3">欢迎来到数字媒体技术团队</h1>
+                    <p>数字媒体技术团队是<a href="https://www.uestc.edu.cn/" target="_blank">电子科技大学</a>--<a
+                            href="https://www.scse.uestc.edu.cn/"
+                            target="_blank">计算机学院</a>蔡洪斌教授团队，长期从事三维图形算法、图像视频处理、三维图形引擎及网络应用等技术研究工作，具有很强的项目组织和研发能力。团队教授、副教授及研究生超过20人。
+                    </p>
+                    <p>在科研方面，主持或参与国家自然基金项目1项，国家“863”计划项目6项，其中重点项目与目标导向项目各1项；国家支撑计划项目1项；工信部基金项目2项、招标项目2项；博士点基金项目1项；四川省科技攻关项目5项；四川省青年科技基金项目1项；成都市科技攻关项目1项。已申请PCT专利14项，获授权中国发明专利26项。获获国家科技进步二等奖1项、四川省科技进步一等奖1项、二等奖2项。
+                    </p>
+                    <!--img src="../images/example.jpg" alt="Example Image" style="max-width: 100%;"-->
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>版权 © 2024 科研团队. 保留所有权利。</p>
-    </footer>
-
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

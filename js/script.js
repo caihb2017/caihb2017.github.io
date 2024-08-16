@@ -1,16 +1,17 @@
-function loadContent(page) {
-    fetch(`${page}/index.html`)
+function loadHandler() {
+    fetch('/header.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('content').innerHTML = data;
+            document.body.insertAdjacentHTML('afterbegin', data);
         })
-        .catch(error => {
-            document.getElementById('content').innerHTML = '<p>加载内容时出错，请稍后再试。</p>';
-            console.error('Error loading content:', error);
-        });
+        .catch(error => console.error('Error loading header:', error));
+        
+    fetch('/footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.body.insertAdjacentHTML('beforeend', data);
+    })
+    .catch(error => console.error('Error loading footer:', error));
 }
 
-// 初始加载主页内容
-document.addEventListener('DOMContentLoaded', () => {
-    loadContent('home');
-});
+window.onload = loadHandler;

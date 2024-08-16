@@ -1,343 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
-<title>patents</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style type="text/css">
-/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
-/* Author: Nicolas Hery - http://nicolashery.com */
-/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
-/* Source: https://github.com/nicolahery/markdownpad-github */
-
-/* RESET
-=============================================================================*/
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-/* BODY
-=============================================================================*/
-
-body {
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
-  padding: 20px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-body>*:first-child {
-  margin-top: 0 !important;
-}
-
-body>*:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* BLOCKS
-=============================================================================*/
-
-p, blockquote, ul, ol, dl, table, pre {
-  margin: 15px 0;
-}
-
-/* HEADERS
-=============================================================================*/
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 20px 0 10px;
-  padding: 0;
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
-  font-size: inherit;
-}
-
-h1 {
-  font-size: 28px;
-  color: #000;
-}
-
-h2 {
-  font-size: 24px;
-  border-bottom: 1px solid #ccc;
-  color: #000;
-}
-
-h3 {
-  font-size: 18px;
-}
-
-h4 {
-  font-size: 16px;
-}
-
-h5 {
-  font-size: 14px;
-}
-
-h6 {
-  color: #777;
-  font-size: 14px;
-}
-
-body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
-  margin-top: 10px;
-}
-
-/* LINKS
-=============================================================================*/
-
-a {
-  color: #4183C4;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* LISTS
-=============================================================================*/
-
-ul, ol {
-  padding-left: 30px;
-}
-
-ul li > :first-child, 
-ol li > :first-child, 
-ul li ul:first-of-type, 
-ol li ol:first-of-type, 
-ul li ol:first-of-type, 
-ol li ul:first-of-type {
-  margin-top: 0px;
-}
-
-ul ul, ul ol, ol ol, ol ul {
-  margin-bottom: 0;
-}
-
-dl {
-  padding: 0;
-}
-
-dl dt {
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  padding: 0;
-  margin: 15px 0 5px;
-}
-
-dl dt:first-child {
-  padding: 0;
-}
-
-dl dt>:first-child {
-  margin-top: 0px;
-}
-
-dl dt>:last-child {
-  margin-bottom: 0px;
-}
-
-dl dd {
-  margin: 0 0 15px;
-  padding: 0 15px;
-}
-
-dl dd>:first-child {
-  margin-top: 0px;
-}
-
-dl dd>:last-child {
-  margin-bottom: 0px;
-}
-
-/* CODE
-=============================================================================*/
-
-pre, code, tt {
-  font-size: 12px;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
-}
-
-code, tt {
-  margin: 0 0px;
-  padding: 0px 0px;
-  white-space: nowrap;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
-  border-radius: 3px;
-}
-
-pre>code {
-  margin: 0;
-  padding: 0;
-  white-space: pre;
-  border: none;
-  background: transparent;
-}
-
-pre {
-  background-color: #f8f8f8;
-  border: 1px solid #ccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px;
-}
-
-pre code, pre tt {
-  background-color: transparent;
-  border: none;
-}
-
-kbd {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #DDDDDD;
-    background-image: linear-gradient(#F1F1F1, #DDDDDD);
-    background-repeat: repeat-x;
-    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
-    border-image: none;
-    border-radius: 2px 2px 2px 2px;
-    border-style: solid;
-    border-width: 1px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    line-height: 10px;
-    padding: 1px 4px;
-}
-
-/* QUOTES
-=============================================================================*/
-
-blockquote {
-  border-left: 4px solid #DDD;
-  padding: 0 15px;
-  color: #777;
-}
-
-blockquote>:first-child {
-  margin-top: 0px;
-}
-
-blockquote>:last-child {
-  margin-bottom: 0px;
-}
-
-/* HORIZONTAL RULES
-=============================================================================*/
-
-hr {
-  clear: both;
-  margin: 15px 0;
-  height: 0px;
-  overflow: hidden;
-  border: none;
-  background: transparent;
-  border-bottom: 4px solid #ddd;
-  padding: 0;
-}
-
-/* TABLES
-=============================================================================*/
-
-table th {
-  font-weight: bold;
-}
-
-table th, table td {
-  border: 1px solid #ccc;
-  padding: 6px 13px;
-}
-
-table tr {
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-}
-
-table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-
-/* IMAGES
-=============================================================================*/
-
-img {
-  max-width: 100%
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识产权</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
-<h2>PCT专利 14项</h2>
-<ol>
-<li>一种基于用户行为特征的智能推荐方法，PCT/CN2023/136354</li>
-<li>一种深度融合光流和IMU数据的视频稳像方法，PCT/CN2023/136324</li>
-<li>一种基于改进Mask RCNN的背部分割方法，PCT/CN2023/136325</li>
-<li>一种基于稀疏AD-Census及光场遮挡模型的深度估计方法，PCT/CN2022/134859</li>
-<li>一种双目偏振三维重建方法，PCT/CN2022/135633</li>
-<li>一种基于结构光和双目视觉的三维重建方法，PCT/CN2022/134860</li>
-<li>一种基于多目视频的家庭场景动作捕捉方法，PCT/CN2021/093969</li>
-<li>一种基于深度学习的电容缺陷智能检测方法，PCT/CN2020/135051</li>
-<li>一种柱坐标系等值面提取方法，PCT/CN2020/130374</li>
-<li>一种基于自然交互的远程家庭感知与虚拟呈现方法，PCT/CN2019/121733</li>
-<li>一种基于超声图像的电容内部缺陷智能检测方法，PCT/CN2019/122861</li>
-<li>一种基于机器学习的癫痫病脑电波状态检测方法，PCT/CN2018/108154</li>
-<li>一种基于MAKLINK图的寻径方法，PCT/CN2019/080004</li>
-<li>一种基于卷积神经网络的糖尿病视网膜病变诊断技术，PCT/CN2018/108155</li>
-</ol>
-<h2>中国授权发明专利26项</h2>
-<ol>
-<li>一种自适应的媒体内容创作任务分配方法，ZL200710050631.4</li>
-<li>一种图像立体匹配方法及其装置，ZL200710050853.6</li>
-<li>基于代码切片的虚拟执行系统与方法，ZL200710049756.5</li>
-<li>协同编辑中数据冲突模块的加锁方法，ZL20071005100.8</li>
-<li>一种电磁场强度实时可视化方法，ZL200810044919.5</li>
-<li>一种高效实时的群体动画系统，ZL200710050665.3</li>
-<li>一种运动估计方法，ZL200710050619.3</li>
-<li>一种宏块模式的快速选择方法，ZL200710050618.9</li>
-<li>一种刑事案件的串并案智能分析方法，ZL200710050854.0</li>
-<li>一种大规模虚拟动态场景简化方法，ZL200910260144.X</li>
-<li>一种大规模虚拟人群寻径方法，ZL200910260145.4</li>
-<li>一种无冗余的大规模地形数据组织方法和读取方法，ZL201010242293.6</li>
-<li>一种受地形影响的雷达探测范围三维可视化方法，ZL201010242292.1</li>
-<li>一种大规模虚拟人群寻径导航方法，ZL200910260146.9</li>
-<li>一种多层次虚拟群体的避碰方法，ZL200910265430.5</li>
-<li>一种大规模虚拟人群实时绘制方法，ZL201110090775.9</li>
-<li>基于相对梯度的ISA 模型的行为识别方法，ZL201210578578.6</li>
-<li>一种面向异构拓扑的角色运动重定向方法，ZL201210129851.5</li>
-<li>一种基于云端绘制的大规模三维场景多人协同创作方法，ZL201210267390.X</li>
-<li>动态三维场景中加速数据结构的构建方法，ZL201210137431.3</li>
-<li>一种虚拟服装的实时物理建模方法，ZL201210139866.1</li>
-<li>一种电磁环境体数据等值面提取方法，ZL201310258955.2</li>
-<li>一种流体环境下的关键动画建模方法，ZL201310258955.2</li>
-<li>基于普通三维模型的皮影模型制作方法，ZL201310007858.6</li>
-<li>一种将球谐光照技术应用于面绘制的方法，ZL201310396822.1</li>
-<li>一种动态障碍物影响下流体的仿真方法，ZL201310396034.2</li>
-</ol>
 
+<body class="d-flex flex-column min-vh-100">
+    <main class="flex-fill">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h4 class="pb-2 border-bottom">PCT专利 14项</h4>
+                    <ol>
+                        <li>一种基于用户行为特征的智能推荐方法，PCT/CN2023/136354</li>
+                        <li>一种深度融合光流和IMU数据的视频稳像方法，PCT/CN2023/136324</li>
+                        <li>一种基于改进Mask RCNN的背部分割方法，PCT/CN2023/136325</li>
+                        <li>一种基于稀疏AD-Census及光场遮挡模型的深度估计方法，PCT/CN2022/134859</li>
+                        <li>一种双目偏振三维重建方法，PCT/CN2022/135633</li>
+                        <li>一种基于结构光和双目视觉的三维重建方法，PCT/CN2022/134860</li>
+                        <li>一种基于多目视频的家庭场景动作捕捉方法，PCT/CN2021/093969</li>
+                        <li>一种基于深度学习的电容缺陷智能检测方法，PCT/CN2020/135051</li>
+                        <li>一种柱坐标系等值面提取方法，PCT/CN2020/130374</li>
+                        <li>一种基于自然交互的远程家庭感知与虚拟呈现方法，PCT/CN2019/121733</li>
+                        <li>一种基于超声图像的电容内部缺陷智能检测方法，PCT/CN2019/122861</li>
+                        <li>一种基于机器学习的癫痫病脑电波状态检测方法，PCT/CN2018/108154</li>
+                        <li>一种基于MAKLINK图的寻径方法，PCT/CN2019/080004</li>
+                        <li>一种基于卷积神经网络的糖尿病视网膜病变诊断技术，PCT/CN2018/108155</li>
+                    </ol>
+                    <h4 class="pb-2 border-bottom">中国授权发明专利26项</h2>
+                    <ol>
+                        <li>一种自适应的媒体内容创作任务分配方法，ZL200710050631.4</li>
+                        <li>一种图像立体匹配方法及其装置，ZL200710050853.6</li>
+                        <li>基于代码切片的虚拟执行系统与方法，ZL200710049756.5</li>
+                        <li>协同编辑中数据冲突模块的加锁方法，ZL20071005100.8</li>
+                        <li>一种电磁场强度实时可视化方法，ZL200810044919.5</li>
+                        <li>一种高效实时的群体动画系统，ZL200710050665.3</li>
+                        <li>一种运动估计方法，ZL200710050619.3</li>
+                        <li>一种宏块模式的快速选择方法，ZL200710050618.9</li>
+                        <li>一种刑事案件的串并案智能分析方法，ZL200710050854.0</li>
+                        <li>一种大规模虚拟动态场景简化方法，ZL200910260144.X</li>
+                        <li>一种大规模虚拟人群寻径方法，ZL200910260145.4</li>
+                        <li>一种无冗余的大规模地形数据组织方法和读取方法，ZL201010242293.6</li>
+                        <li>一种受地形影响的雷达探测范围三维可视化方法，ZL201010242292.1</li>
+                        <li>一种大规模虚拟人群寻径导航方法，ZL200910260146.9</li>
+                        <li>一种多层次虚拟群体的避碰方法，ZL200910265430.5</li>
+                        <li>一种大规模虚拟人群实时绘制方法，ZL201110090775.9</li>
+                        <li>基于相对梯度的ISA 模型的行为识别方法，ZL201210578578.6</li>
+                        <li>一种面向异构拓扑的角色运动重定向方法，ZL201210129851.5</li>
+                        <li>一种基于云端绘制的大规模三维场景多人协同创作方法，ZL201210267390.X</li>
+                        <li>动态三维场景中加速数据结构的构建方法，ZL201210137431.3</li>
+                        <li>一种虚拟服装的实时物理建模方法，ZL201210139866.1</li>
+                        <li>一种电磁环境体数据等值面提取方法，ZL201310258955.2</li>
+                        <li>一种流体环境下的关键动画建模方法，ZL201310258955.2</li>
+                        <li>基于普通三维模型的皮影模型制作方法，ZL201310007858.6</li>
+                        <li>一种将球谐光照技术应用于面绘制的方法，ZL201310396822.1</li>
+                        <li>一种动态障碍物影响下流体的仿真方法，ZL201310396034.2</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
-<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -1,101 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>科研项目</title>
-<style>
-    /* 样式可以根据需求进行修改 */
-    body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        text-align: center; /* 让文本内容居中 */
-    }
-    table {
-        width: 80%; /* 表格宽度为页面宽度的70% */
-        margin: 20px auto; /* 上下间距为20px，左右自动居中 */
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .item {
-        color: blue;
-        text-decoration: underline;
-        cursor: pointer;
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .index-column {
-        width: 10%;
-        text-align: center; 
-    }
-    .image-column {
-        width: 40%;
-        text-align: center; 
-    }
-    .introduce-column {
-        width: 50%;
-        text-align: left; 
-    }
-</style>
-</head>
-<body>
-    <h1>科研项目展示</h1>
+<html lang="zh-CN">
 
-    <table>
-       <tbody>
-            <tr>
-                <td class="image-column"><p>团队研究方向</p><p><a href="/projects/projects_detail.html" target="_blank" class="item">项目清单</a></p></td>
-                <td class="introduce-column"><img src="../images/projects_main_research.png" alt="" style="max-width: 80%;"></td>
-            </tr>
-        </tbody>
-    </table>
-    <table>
-        <thead>
-            <tr>
-                <th class="index-column" style="text-align: center;">序号</th>
-                <th class="image-column" style="text-align: center;">成果展示</th>
-                <th class="introduce-column" style="text-align: center;">简介</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="index-column"></td>
-                <td class="image-column"><h4>图像+视频处理</h4></td>
-                <td class="introduce-column"></td>
-            </tr>
-            <tr>
-                <td class="index-column">1</td>
-                <td class="image-column"><img src="../images/projects_national_award.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">“面向数字化医疗的医学图像关键技术研究及应用”获国家科学技术进步二等奖</td>
-            </tr>
-            <tr>
-                <td class="index-column">2</td>
-                <td class="image-column"><img src="../images/projects_provincial_award1.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">“医学图像处理与三维重建关键技术”获四川省科学技术进步一等奖</td>
-            </tr>
-            <tr>
-                <td class="index-column">3</td>
-                <td class="image-column"><img src="../images/projects_capacitance.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">电容内部缺陷智能检测系统
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研项目</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <main class="flex-fill">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-12 mb-3 text-center">
+                    <h1>团队研究方向</h1>
+                </div>
+                <div class="col-12 mb-3">
+                    <img src="../images/projects_main_research.png" class="img-fluid">
+                    <p><a href="/projects/projects_detail.html" target="_blank" class="item">详细项目清单</a></p>
+                </div>
+                <div class="col-12 mb-3">
+                    <h4 class="pb-2 border-bottom">图像+视频处理</h4>
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_national_award.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>1. 面向数字化医疗的医学图像关键技术研究及应用</p>
+                    <ul>
+                        <li>获国家科学技术进步二等奖</li>
+                    </ul>
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_provincial_award1.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>2. 医学图像处理与三维重建关键技术</p>
+                    <ul>
+                        <li>获四川省科学技术进步一等奖</li>
+                    </ul>
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_capacitance.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>3. 电容内部缺陷智能检测系统</p>
                     <ul>
                         <li>超声波扫描电容内部缺陷</li>
                         <li>人工智能分析，定位缺陷电容及缺陷尺寸</li>
                         <li>缺陷电容准确率>99.9%</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">4</td>
-                <td class="image-column"><img src="../images/projects_face.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">人像处理服务平台
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_face.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>4. 人像处理服务平台</p>
                     <ul>
                         <li>眉毛遮挡检测</li>
                         <li>特征点检测</li>
@@ -104,151 +66,156 @@
                         <li>抠图</li>
                         <li>裁剪标准寸照</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">5</td>
-                <td class="image-column"><img src="../images/projects_pose.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">青少年坐姿实时检测及AIS风险预测系统
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_pose.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>5. 青少年坐姿实时检测及AIS风险预测系统</p>
                     <ul>
                         <li>坐姿实时检测，不良坐姿实时警示</li>
                         <li>正确坐姿与错误坐姿统计及智能分析，预测AIS风险</li>
                         <li>AIS风险大，则进行筛查提醒</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">6</td>
-                <td class="image-column"><img src="../images/projects_ais.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">青少年脊柱侧弯AIS快速筛查系统
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_ais.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>6. 青少年脊柱侧弯AIS快速筛查系统</p>
                     <ul>
                         <li>使用3D深度传感器，采集前屈背部三维点云，获取深度偏差图</li>
                         <li>采用深度学习算法，快速判断脊柱侧弯阳性</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">7</td>
-                <td class="image-column"><img src="../images/projects_objectdetect.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">基于深度学习的水下目标检测与识别软件
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_objectdetect.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>7. 基于深度学习的水下目标检测与识别软件</p>
                     <ul>
                         <li>利用深度学习技术对方位历程图（BTR）进行目标检测、识别及跟踪</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column"></td>
-                <td class="image-column"><h4>图形计算</h4></td>
-                <td class="introduce-column"></td>
-            </tr>
-            <tr>
-                <td class="index-column">1</td>
-                <td class="image-column"><img src="../images/projects_provincial_award2.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">“大规模三维场景高效处理关键技术及系统”获四川省科学技术进步二等奖</td>
-            </tr>
-            <tr>
-                <td class="index-column">2</td>
-                <td class="image-column"><img src="../images/projects_vr_game.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">VR游戏
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">3</td>
-                <td class="image-column"><img src="../images/projects_scan.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">口内三维扫描系统
+                </div>
+                <div class="col-12 mb-5">
+                    <h4 class="pb-2 border-bottom">图形计算</h4>
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_provincial_award2.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>1. 大规模三维场景高效处理关键技术及系统</p>
+                    <ul>
+                        <li>获四川省科学技术进步二等奖</li>
+                    </ul>
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_vr_game.png"class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>2. VR游戏</p>
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_scan.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>3. 口内三维扫描系统</p>
                     <ul>
                         <li>基于结构光的三维扫描硬件系统</li>
                         <li>三维点云生成算法</li>
                         <li>三维点云处理及面片法算法</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">4</td>
-                <td class="image-column"><img src="../images/projects_wave.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">微波器件建模及计算数据可视化
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_wave.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>4. 微波器件建模及计算数据可视化</p>
                     <ul>
                         <li>科学计算可视化</li>
                         <li>微波器件三维建模</li>
                         <li>方便的人机交互</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">5</td>
-                <td class="image-column"><img src="../images/projects_edu.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">面向智能玩具领域的核心技术研究及其产业化示范项目--智能教育机器人虚拟设计与仿真平台
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_edu.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>5. 面向智能玩具领域的核心技术研究及其产业化示范项目--智能教育机器人虚拟设计与仿真平台</p>
                     <ul>
                         <li>积木块三维建模</li>
                         <li>可视化积木组装</li>
                         <li>图形化编程控制</li>
                         <li>物理仿真</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">6</td>
-                <td class="image-column"><img src="../images/projects_crowd.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">大规模群体动画模拟与绘制技术（863探索项目）
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_crowd.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>6. 大规模群体动画模拟与绘制技术（863探索项目）</p>
                     <ul>
                         <li>大规模群体动画</li>
                         <li>应急逃生仿真</li>
                         <li>大型场景建模</li>
                         <li>物理仿真</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">7</td>
-                <td class="image-column"><img src="../images/projects_museum.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">体验式虚拟博物馆数字展示
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_museum.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>7. 体验式虚拟博物馆数字展示</p>
                     <ul>
                         <li>古场景建模</li>
                         <li>角色动画及物理仿真</li>
                         <li>古文物三维建模</li>
                         <li>基于物理的动画</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column"></td>
-                <td class="image-column"><h4>网络应用</h4></td>
-                <td class="introduce-column"></td>
-            </tr>
-            <tr>
-                <td class="index-column">1</td>
-                <td class="image-column"><img src="../images/projects_health.png" alt="" style="max-width: 100%;"></td>
-                <td class="introduce-column">基于大数据的居民健康智能服务平台关键技术研究及应用
+                </div>
+                <div class="col-12 mb-5">
+                    <h4 class="pb-2 border-bottom">网络应用</h4>
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_health.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>1. 基于大数据的居民健康智能服务平台关键技术研究及应用</p>
                     <ul>
                         <li>大数据分析与挖掘</li>
                         <li>数据清洗与结构化</li>
                         <li>数据可视化</li>
                         <li>智能决策</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">2</td>
-                <td class="image-column"><img src="../images/projects_cost.png" alt="" style="max-width: 80%;"></td>
-                <td class="introduce-column">建筑公司成本管理系统
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_cost.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>2. 建筑公司成本管理系统</p>
                     <ul>
                         <li>Spring + SpringMVC + Hiberate</li>
                         <li>基于RBAC的权限管理：Shiro</li>
                         <li>Tomcat + MySQL</li>
                     </ul>
-                </td>
-            </tr>
-            <tr>
-                <td class="index-column">3</td>
-                <td class="image-column"><img src="../images/projects_risk.png" alt="" style="max-width: 80%;"></td>
-                <td class="introduce-column">金融风险控制管理平台
+                </div>
+                <div class="col-4 mb-5">
+                    <img src="../images/projects_risk.png" class="img-fluid">
+                </div>
+                <div class="col-8 mb-5">
+                    <p>3. 金融风险控制管理平台</p>
                     <ul>
                         <li>SSH+Shiro</li>
                         <li>基于AI的大数据分析</li>
                     </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
