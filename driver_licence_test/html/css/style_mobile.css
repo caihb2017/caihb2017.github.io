@@ -1,0 +1,28 @@
+body {
+    font-size: 18px; /* 设置较小的字体大小，适应移动设备 */
+    line-height: 1.6; /* 设置行间距 */
+    width: 96%; /* 设置内容宽度为页面宽度的90% */
+    margin: 0 auto; /* 让内容在页面中居中 */
+    padding: 10px; /* 增加内容的内边距，避免贴边 */
+}
+
+h1 {
+    font-size: 24px; /* 设置标题字体大小 */
+    color: black; /* 标题使用黑色 */
+    text-align: center; /* 标题居中 */
+}
+
+h2 {
+    font-size: 22px; /* 设置次级标题字体大小 */
+    color: black; /* 标题使用黑色 */
+}
+
+ul li {
+    color: black; /* 列表项使用黑色 */
+    margin-bottom: 8px; /* 减少列表项之间的间距 */
+}
+
+.important {
+    color: red; /* 重点内容使用红色 */
+    font-weight: bold; /* 加粗显示 */
+}
