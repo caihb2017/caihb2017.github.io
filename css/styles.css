@@ -1,5 +1,20 @@
+/* limit container size */
 @media (min-width: 992px) {
     .container {
         width: 800px !important;
     }
+}
+
+/* banner image styles */
+.background-image {
+    background-size: cover;
+    background-position: center center;
+}
+
+.banner-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.3);
 }
