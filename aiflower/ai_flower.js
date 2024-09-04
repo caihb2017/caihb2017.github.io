@@ -34,7 +34,7 @@ async function loadModel() {
     // 加载Savedmodel转换模型运行正确，预测错误
     model = await tf.loadGraphModel(modelUrl);
     
-    document.getElementById('result').innerText = "Model loaded successfully.";
+    // document.getElementById('promptText').innerText = "Model loaded successfully.";
     
     // console.log("Model input:", model.input)
     // console.log(model.summary())
@@ -42,7 +42,7 @@ async function loadModel() {
   } catch (error) {
     console.error("Error loading model:", error);
     document.getElementById('predict').disabled = true;
-    document.getElementById('result').innerText = "Error loading model.";
+    document.getElementById('promptText').innerText = "Error loading model.";
   }
 }
 
@@ -58,25 +58,19 @@ async function loadLabelMap(label_map_path, label_encn_path){
     
   } catch (error) {
     console.error("加载类别标签失败:", error);
-    document.getElementById('result').innerText = "加载类别标签失败。";
+    document.getElementById('promptText').innerText = "加载类别标签失败。";
   }
 }
 
-// 处理上传的图片
-function handleImageUpload(event) {
-  // 清空上次识别结果
-  document.getElementById('result').innerText = "";
-  document.getElementById('promptText').innerText = "";
-
-  // 清除之前的裁剪图片
-  const croppedImgElement = document.getElementById('croppedImage');
-  croppedImgElement.src = '';
-  croppedImgElement.style.display = 'none';
+// 重置
+function clearUpload() {
   // 清除虚线框
   overlay.style.display = 'none';
+  image.classList.remove('image-selected');
 
   // 禁用预测按钮
   document.getElementById('predict').disabled = true; 
+  document.getElementById('reset').disabled = true;
 
   // 未确定矩形框
   isSelectRect = false;
@@ -86,8 +80,44 @@ function handleImageUpload(event) {
   imgElement.style.display = 'none';
 
   // 清除之前的虚线框
-  const overlayCanvas = document.getElementById('overlayCanvas');
-  overlayCanvas.style.display = 'none';
+  overlay.style.display = 'none';
+
+  document.getElementById('fileUploadContainer').style.display = 'block';
+
+  document.getElementById('promptText').classList.remove('active');
+  document.getElementById('promptText').innerText = '第1步：请上传图片。'
+  setTimeout(() => {
+    document.getElementById('promptText').classList.add('active');
+  }, 10);
+
+  clearResult();
+}
+
+function clearResult() {
+  // 清空上次识别结果
+  document.getElementById('result').innerText = "";
+
+  // 清除之前的裁剪图片
+  const croppedImgElement = document.getElementById('croppedImage');
+  croppedImgElement.src = '';
+  croppedImgElement.style.display = 'none';
+
+  document.getElementById('resultContainer').style.display = 'none';
+}
+
+// 处理上传的图片
+function handleImageUpload(event) {
+
+  clearResult();
+
+  // show spinner
+  document.getElementById('spinnerContainer').style.display = 'flex';
+  
+  // hide upload section
+  document.getElementById('fileUploadContainer').style.display = 'none';
+
+  // enable reset
+  document.getElementById('reset').disabled = false;
 
   // 加载图片
   const file = event.target.files[0];
@@ -116,7 +146,7 @@ function handleImageUpload(event) {
       const overlayCanvas = document.getElementById('overlayCanvas');
       overlayCanvas.width = tempImg.naturalWidth;
       overlayCanvas.height = tempImg.naturalHeight;
-      overlayCanvas.style.display = 'block';
+      // overlayCanvas.style.display = 'block';
 
       // 确保 canvas 与 imgElement 对齐
       const imgRect = imgElement.getBoundingClientRect();
@@ -125,7 +155,13 @@ function handleImageUpload(event) {
       overlayCanvas.style.top = `${imgRect.top}px`;
       
       // 添加提示文本
-      document.getElementById('promptText').innerText = '请拖动鼠标，框选花朵。';
+      document.getElementById('promptText').classList.remove('active');
+      document.getElementById('promptText').innerText = '第2步：请拖动鼠标选择花朵，点击“识别”以确认。'
+      setTimeout(() => {
+        document.getElementById('promptText').classList.add('active');
+      }, 10);
+
+      document.getElementById('spinnerContainer').style.display = 'none';
     };
 
     tempImg.src = e.target.result;
@@ -136,65 +172,74 @@ function handleImageUpload(event) {
 
 // 裁剪并显示图像
 function cropImage(cropStartX, cropStartY, cropEndX, cropEndY) {
-  const imgElement = document.getElementById('image');
-  const originalImageData = imgElement.dataset.originalImage;
-  const naturalWidth = parseInt(imgElement.dataset.naturalWidth, 10);
-  const naturalHeight = parseInt(imgElement.dataset.naturalHeight, 10);
+  
+  clearResult();
 
-  // Get the image's bounding rectangle
-  const imgRect = imgElement.getBoundingClientRect();
+  // show spinner
+  document.getElementById('spinnerContainer').style.display = 'flex';
 
-  // Calculate the scaling factors
-  const scaleX = naturalWidth / imgElement.width;
-  const scaleY = naturalHeight / imgElement.height;
+  setTimeout(() => {
 
-  // Convert displayed coordinates to original image coordinates
-  const sx = cropStartX * scaleX;
-  const sy = cropStartY * scaleY;
-  const ex = cropEndX * scaleX;
-  const ey = cropEndY * scaleY;
+    const imgElement = document.getElementById('image');
+    const originalImageData = imgElement.dataset.originalImage;
+    const naturalWidth = parseInt(imgElement.dataset.naturalWidth, 10);
+    const naturalHeight = parseInt(imgElement.dataset.naturalHeight, 10);
 
-  const width = ex - sx;
-  const height = ey - sy;
+    // Get the image's bounding rectangle
+    const imgRect = imgElement.getBoundingClientRect();
 
-  // Ensure the crop area is within image bounds
-  const adjustedStartX = Math.max(0, Math.min(sx, naturalWidth - width));
-  const adjustedStartY = Math.max(0, Math.min(sy, naturalHeight - height));
+    // Calculate the scaling factors
+    const scaleX = naturalWidth / imgElement.width;
+    const scaleY = naturalHeight / imgElement.height;
 
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
+    // Convert displayed coordinates to original image coordinates
+    const sx = cropStartX * scaleX;
+    const sy = cropStartY * scaleY;
+    const ex = cropEndX * scaleX;
+    const ey = cropEndY * scaleY;
 
-  // Set canvas dimensions
-  canvas.width = cropEndX - cropStartX;
-  canvas.height = cropEndY - cropStartY;
+    const width = ex - sx;
+    const height = ey - sy;
 
-  // Create a temporary image object to load the original image data
-  const tempImg = new Image();
-  tempImg.onload = function() {
-    // Draw the cropped area on the canvas
-    ctx.drawImage(tempImg, adjustedStartX, adjustedStartY, width, height, 0, 0, canvas.width, canvas.height);
+    // Ensure the crop area is within image bounds
+    const adjustedStartX = Math.max(0, Math.min(sx, naturalWidth - width));
+    const adjustedStartY = Math.max(0, Math.min(sy, naturalHeight - height));
 
-    const croppedImgElement = document.getElementById('croppedImage');
-    croppedImgElement.src = canvas.toDataURL();
-    croppedImgElement.style.display = 'block';
-  };
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
 
-  tempImg.src = originalImageData;
+    // Set canvas dimensions
+    canvas.width = cropEndX - cropStartX;
+    canvas.height = cropEndY - cropStartY;
 
-  document.getElementById('predict').disabled = false; // 启用预测按钮
-  document.getElementById('promptText').innerText = ''
+    // Create a temporary image object to load the original image data
+    const tempImg = new Image();
+    tempImg.onload = function() {
+      // Draw the cropped area on the canvas
+      ctx.drawImage(tempImg, adjustedStartX, adjustedStartY, width, height, 0, 0, canvas.width, canvas.height);
 
+      const croppedImgElement = document.getElementById('croppedImage');
+      croppedImgElement.src = canvas.toDataURL();
+      croppedImgElement.style.display = 'block';
+    };
+
+    tempImg.src = originalImageData;
+
+    document.getElementById('predict').disabled = false; // 启用预测按钮
+
+    document.getElementById('spinnerContainer').style.display = 'none';
+  }, 0);
 }
 
 // SavedModel模型预测图片
 async function predictImage() {
   if (!model) {
-    document.getElementById('result').innerText = "模型尚未加载。";
+    document.getElementById('promptText').innerText = "模型尚未加载。";
     return;
   }
 
   if (!isSelectRect) {
-    document.getElementById('result').innerText = "请拖动鼠标，框选花朵。";
+    document.getElementById('promptText').innerText = "请拖动鼠标，框选花朵。";
     return;
   }
 
@@ -216,14 +261,14 @@ async function predictImage() {
     predictions = await model.execute(batchedImg);
   } catch (error) {
     console.error("模型预测失败:", error);
-    document.getElementById('result').innerText = "模型预测失败。";
+    document.getElementById('promptText').innerText = "模型预测失败。";
     return;
   }
 
   // 检查 predictions 是否有效
   if (!predictions || Array.isArray(predictions) && predictions.length === 0) {
     console.error("模型预测返回了无效的输出。");
-    document.getElementById('result').innerText = "模型预测返回了无效的输出。";
+    document.getElementById('promptText').innerText = "模型预测返回了无效的输出。";
     return;
   }
 
@@ -233,7 +278,7 @@ async function predictImage() {
 
   if (!outputTensor) {
     console.error("输出 Tensor 未定义");
-    document.getElementById('result').innerText = "输出 Tensor 未定义。";
+    document.getElementById('promptText').innerText = "输出 Tensor 未定义。";
     return;
   }
 
@@ -245,7 +290,7 @@ async function predictImage() {
     // console.log(probabilities)
   } catch (error) {
     console.error("Tensor 转换为数组失败:", error);
-    document.getElementById('result').innerText = "Tensor 转换为数组失败。";
+    document.getElementById('promptText').innerText = "Tensor 转换为数组失败。";
     return;
   }
 
@@ -291,6 +336,8 @@ async function predictImage() {
 
 
   document.getElementById('result').innerText = resultText;
+  document.getElementById('resultContainer').style.display = 'block';
+  document.getElementById('result').scrollIntoView();
   
 }
 
@@ -312,8 +359,16 @@ document.addEventListener('dblclick', (event) => {
     // 判断越界
     if(sx < 0) sx = 0;
     if(sy < 0) sy = 0;
-    if(ex > rect.right) ex = rect.right;
-    if(ey > rect.bottom) ey = rect.bottom;
+    if(ex > rect.width) ex = rect.width;
+    if(ey > rect.height) ey = rect.height;
+    
+    // show overlay
+    overlay.style.left = `${sx}px`;
+    overlay.style.top = `${sy}px`;
+    overlay.style.width = `${ex - sx}px`;
+    overlay.style.height = `${ey - sy}px`;
+    overlay.style.display = 'block';
+    image.classList.add('image-selected');
 
     // 显示裁剪图片
     cropImage(sx, sy, ex, ey);
@@ -328,7 +383,7 @@ document.addEventListener('dblclick', (event) => {
 // 拖动鼠标框选，涉及三个鼠标事件
 // 鼠标按下事件
 document.addEventListener('pointerdown', (event) => {
-  if (event.target.id === 'image') {
+  if (event.target.id === 'image' || event.target.id === 'overlayCanvas') {
     isDragging = true;
     const rect = image.getBoundingClientRect();
     startX = event.clientX - rect.left;
@@ -340,6 +395,7 @@ document.addEventListener('pointerdown', (event) => {
     overlay.style.width = '0px';
     overlay.style.height = '0px';
     overlay.style.display = 'block';
+    image.classList.add('image-selected');
   }
 });
 
@@ -347,8 +403,14 @@ document.addEventListener('pointerdown', (event) => {
 document.addEventListener('pointermove', (event) => {
   if (isDragging) {
     const rect = image.getBoundingClientRect();
-    const currentX = event.clientX - rect.left;
-    const currentY = event.clientY - rect.top;
+    let currentX = event.clientX - rect.left;
+    let currentY = event.clientY - rect.top;
+    
+    // 判断越界
+    if(currentX < 0) currentX = 0;
+    if(currentY < 0) currentY = 0;
+    if(currentX > rect.width) currentX = rect.width;
+    if(currentY > rect.height) currentY = rect.height;
 
     const width = currentX - startX;
     const height = currentY - startY;
@@ -366,26 +428,34 @@ document.addEventListener('pointerup', (event) => {
   if (isDragging) {
     isDragging = false;
     const rect = image.getBoundingClientRect();
-    const endX = event.clientX - rect.left;
-    const endY = event.clientY - rect.top;
+    let endX = event.clientX - rect.left;
+    let endY = event.clientY - rect.top;
+    
+    // 判断越界
+    if(endX < 0) endX = 0;
+    if(endY < 0) endY = 0;
+    if(endX > rect.width) endX = rect.width;
+    if(endY > rect.height) endY = rect.height;
 
     // 计算裁剪区域的宽度和高度
-    const width = endX - startX;
-    const height = endY - startY;
+    const width = Math.abs(endX - startX);
+    const height = Math.abs(endY - startY);
 
     // 如果在图片上click，或width、heigit太小，判断为误操作
     if(width < 10 || height < 10) {
       // 清除虚线框
       overlay.style.display = 'none';
+      image.classList.remove('image-selected');
 
       return;
     }
 
     // 调用裁剪函数
-    cropImage(startX, startY, endX, endY);
+    // 允许任何方向裁剪
+    cropImage(Math.min(startX, endX), Math.min(startY, endY), Math.max(startX, endX), Math.max(startY, endY));
 
     // 清除虚线框
-    overlay.style.display = 'none';
+    // overlay.style.display = 'none';
 
     isSelectRect = true;
   }
@@ -393,18 +463,16 @@ document.addEventListener('pointerup', (event) => {
 
 // 初始化页面
 function initialize() {
-  // 预测按钮不可用
-  document.getElementById('predict').disabled = true;
-  // 未确定矩形框
-  isSelectRect = false;
-
+  clearUpload();
+  clearResult();
+  
   // 事件监听
   // 文件选择事件，处理图片
   document.getElementById('imageUpload').addEventListener('change', handleImageUpload);
   // 单击预测按钮事件
   document.getElementById('predict').addEventListener('click', predictImage);
+  document.getElementById('reset').addEventListener('click', clearUpload);
 
-  
   loadModel(); // 加载模型
   loadLabelMap(labelUrl, labelEnCnUrl);
 }

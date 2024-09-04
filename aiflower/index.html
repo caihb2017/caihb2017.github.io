@@ -1,50 +1,73 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>TensorFlow.js Image Recognition Demo</title>
-  <!-- Import TensorFlow.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-  <link rel="stylesheet" href="css/style.css">
-  
-</head>
-<body>
-  <div class="container">
-    <h1>Flower Recognition Demo</h1>
-  </div>
+<html lang="zh-CN">
 
-  <div class="container">
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <button id="predict">Predict Image</button>
-          </td>
-          <td>
-            <p id="result"></p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="file" id="imageUpload" accept="image/*">
-          </td>
-          <td>
-            <p class="promptText" id="promptText"></p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div id="imageContainer">
-                <img id="image" width="300" style="display: none;" alt="Image">
-                <div id="overlayCanvas"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花朵识别 Demo</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/aiflower/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <main class="flex-fill">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 my-4 text-center">
+                    <span class="display-5">花朵识别 Demo</span>
+                </div>
             </div>
-          </td>
-          <td>
-            <img id="croppedImage" style="display: none;">
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <script src="ai_flower.js"></script>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div id="workArea">
+                        <div id="fileUploadContainer" class="text-center">
+                            <i class="h5 text-secondary bi-file-earmark-arrow-up"></i><br>
+                            <span class="text-secondary">单击或拖动图片到此区域进行上传</span>
+                            <input type="file" id="imageUpload" accept="image/*">
+                        </div>
+                        
+                        <div id="imageContainer">
+                            <img id="image" alt="Image">
+                            <div id="overlayCanvas"></div>
+                        </div>
+                        
+                        <div id="spinnerContainer">
+                            <div id="spinner" class=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 mb-3">
+                    <div id="editPrompt">
+                        <p id="promptText"></p>
+                    </div>
+                </div>
+                <div class="col-4 mb-3 d-flex justify-content-end">
+                    <button class="btn btn-secondary me-3 float-end" id="reset">重置</button>
+                    <button class="btn btn-primary float-end" id="predict">识别</button>
+                </div>
+            </div>
+        </div>
+        <div class="container my-5" id="resultContainer">
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <img id="croppedImage" class="img-fluid w-100">
+                </div>
+                <div class="col-6 mb-3 d-flex align-items-center">
+                    <p>
+                        <span>识别结果：</span><br>
+                        <span id="result" class="text-info fs-4"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="ai_flower.js"></script>
 </body>
 </html>

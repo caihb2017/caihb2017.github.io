@@ -1,79 +1,100 @@
-/* 样式可以根据需求进行修改 */
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    text-align: center; /* 让文本内容居中 */
-    margin: 0; /* 去掉默认的 margin */
-}
-
-h1 {
-    margin-bottom: 20px; /* 标题下方的间距 */
-    text-align: center; /* 让文本内容居中 */
-}
-
-.container {
+#workArea {
+    position: relative;
     display: flex;
-    justify-content: center; /* 水平居中 */
-    align-items: center; /* 垂直居中（可选） */
+    height: 500px;
+    border: 2px dashed #cecece;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
-table {
-    width: 80%; /* 表格宽度为页面宽度的80% */
-    margin: 20px auto; /* 上下间距为20px，左右自动居中 */
-    border-collapse: collapse;
-    border: 0; /* 隐藏表格的边框 */
+/* prompt text animation */
+#promptText {
+    transform: translateX(100%);
+    opacity: 0;
 }
 
-th, td {
-    border: 0;
-    padding: 8px;
-    text-align: left;
+#promptText.active {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: translateX(0);
+    opacity: 1;
 }
 
-th {
-    background-color: #f2f2f2;
-}
-
-.item {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
-    display: block;
+/* file upload */
+#imageUpload {
+    position: absolute;
+    height: 100%;
     width: 100%;
-    box-sizing: border-box;
-}
-
-.recognition-column {
-    width: 10%;
-    text-align: center; 
-}
-
-.image-column {
-    width: 40%;
-    text-align: center; 
-}
-
-.promptText {
-    position: relative; 
-    top: 10px; /* 根据需要调整 */
-    left: 10px; /* 根据需要调整 */
-    color: red; /* 红色字体 */
-    font-weight: bold; /* 粗体 */
-    font-size: 20px; /* 大1号字体 */
-    z-index: 10; /* 确保在其他内容上方 */
-    pointer-events: none; /* 确保不会阻挡鼠标事件 */
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
 }
 
 /* Ensure the canvas covers the image and is on top */
 #imageContainer {
     position: relative;
-    display: inline-block;
 }
+
 #image {
-    display: block;
+    display: none;
+    max-height: 496px;
+    max-width: 100%;
+    user-select: none;
+    cursor: crosshair;
 }
+
+.image-selected {
+    filter: brightness(50%);
+}
+
+/* overlay selector */
 #overlayCanvas {
     position: absolute;
     border: 2px dashed green;
     display: none;
+    background: white;
+    mix-blend-mode: overlay;
+    z-index: 1;
+    user-select: none;
+    cursor: crosshair;
+}
+
+/* result */
+#resultContainer {
+    display: none;
+}
+
+#croppedImage {
+    border-radius: 50px;
+}
+
+/* loading spinner */
+#spinnerContainer {
+    position: absolute;
+    display: none;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #e8f0fe;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+#spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #cecece;
+    border-top: 4px solid #0d6efd;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
