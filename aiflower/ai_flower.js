@@ -233,6 +233,10 @@ function cropImage(cropStartX, cropStartY, cropEndX, cropEndY) {
 
 // SavedModel模型预测图片
 async function predictImage() {
+  
+  document.getElementById('spinnerContainer').style.display = 'flex';
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
   if (!model) {
     document.getElementById('promptText').innerText = "模型尚未加载。";
     return;
@@ -339,6 +343,7 @@ async function predictImage() {
   document.getElementById('resultContainer').style.display = 'block';
   document.getElementById('result').scrollIntoView();
   
+  document.getElementById('spinnerContainer').style.display = 'none';
 }
 
 // 鼠标按下事件处理
